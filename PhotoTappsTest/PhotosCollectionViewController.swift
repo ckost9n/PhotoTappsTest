@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+let constantNumberSize: CGFloat = 20
 
 class PhotosCollectionViewController: UICollectionViewController {
 
@@ -41,5 +41,27 @@ class PhotosCollectionViewController: UICollectionViewController {
 }
 
 extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemsPerRow: CGFloat = 2
+        let paddinWidth = constantNumberSize * (itemsPerRow + 1)
+        let availabelWidth = collectionView.frame.width - paddinWidth
+        let widthPerItem = availabelWidth / itemsPerRow
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: constantNumberSize, left: constantNumberSize, bottom: constantNumberSize, right: constantNumberSize)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return constantNumberSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return constantNumberSize
+    }
+    
+    
     
 }
